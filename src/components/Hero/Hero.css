@@ -5,7 +5,7 @@
     gap: 35px;
 }
 .hero img{
-    margin-top: 50px;
+    margin-top: 80px;
     border-radius: 20%; 
     object-fit: cover;
 }
@@ -55,7 +55,7 @@
 }
 @media(max-width:768px){
     .hero img{
-        margin-top: 50px;
+        margin-top: 80px;
         width: 260px;
     }
     .hero h1{
