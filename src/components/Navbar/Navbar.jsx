@@ -1,73 +1,82 @@
-import React, { useRef, useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './navbar.css';
-import logo from '../../assets/logo_profile2.png';
+import logo1 from '../../assets/logo_profile2.png';
+import logo2 from '../../assets/logo_alt.jpg';
 import underline from '../../assets/right.svg';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import menu_open from '../../assets/menu_open.svg';
 import menu_close from '../../assets/menu_close.svg';
 
 const Navbar = () => {
-
   const [menu, setMenu] = useState('accueil');
-  const menuRef = useRef();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+  const location = useLocation();
 
-  const openMenu = () => {
-    menuRef.current.style.right = '0';
-  };
+  // Détection du scroll pour changer le logo
+  useEffect(() => {
+    const handleScroll = () => setScrolling(window.scrollY > 50);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const closeMenu = () => {
-    menuRef.current.style.right = '-350px';
-  };
+  // Vérifie si l'utilisateur est sur une page projet
+  const isProjectPage = location.pathname.startsWith('/project/');
+
+  // Navigation Links
+  const navLinks = [
+    { id: 'accueil', label: 'Accueil' },
+    { id: 'a-propos', label: 'À propos de moi' },
+    { id: 'services', label: 'Services' },
+    { id: 'portfolio', label: 'Portfolio' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  // Si on est sur une page projet, on masque la navbar
+  if (isProjectPage) return null;
 
   return (
-    <div className='navbar'>
-      <img src={logo} alt='Logo' />
-      <img src={menu_open} onClick={openMenu} alt='Ouvrir le menu' className='nav-mob-open'/>
-      <ul ref={menuRef} className='nav-menu'>
-        <img src={menu_close} onClick={closeMenu} alt='Fermer le menu' className='nav-mob-close'/>
-        
-        <li>
-          <AnchorLink className='anchor-link' href='#accueil'>
-            <p onClick={() => setMenu('accueil')}>Accueil</p>
-          </AnchorLink>
-          {menu === 'accueil' ? <img src={underline} alt=''/> : <></>}
-        </li>
-
-        <li>
-          <AnchorLink className='anchor-link' offset={50} href='#a-propos'>
-            <p onClick={() => setMenu('a-propos')}>À propos de moi</p>
-          </AnchorLink>
-          {menu === 'a-propos' ? <img src={underline} alt=''/> : <></>}
-        </li>
-
-        <li>
-          <AnchorLink className='anchor-link' offset={50} href='#services'>
-            <p onClick={() => setMenu('services')}>Services</p>
-          </AnchorLink>
-          {menu === 'services' ? <img src={underline} alt=''/> : <></>}
-        </li>
-
-        <li>
-          <AnchorLink className='anchor-link' offset={50} href='#portfolio'>
-            <p onClick={() => setMenu('portfolio')}>Portfolio</p>
-          </AnchorLink>
-          {menu === 'portfolio' ? <img src={underline} alt=''/> : <></>}
-        </li>
-
-        <li>
-          <AnchorLink className='anchor-link' offset={50} href='#contact'>
-            <p onClick={() => setMenu('contact')}>Contact</p>
-          </AnchorLink>
-          {menu === 'contact' ? <img src={underline} alt=''/> : <></>}
-        </li>
-      </ul>
-
-      <div className='nav-connect'>
-        <AnchorLink className='anchor-link' offset={50} href='#contact'>
-          Me contacter
+    <nav className={`navbar ${scrolling ? 'navbar-scrolled' : ''}`}>
+      <div className="navbar-container">
+        {/* Logo dynamique au scroll */}
+        <AnchorLink href="#accueil" className="logo-link">
+          <img src={scrolling ? logo2 : logo1} alt="Logo" className="logo" />
         </AnchorLink>
+
+        {/* Menu Mobile Toggle */}
+        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          <img src={menuOpen ? menu_close : menu_open} alt="Menu" />
+        </button>
+
+        {/* Navigation principale */}
+        <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <AnchorLink
+                className="anchor-link"
+                href={`#${link.id}`}
+                offset="80"  // Décale la position d'ancrage de 80px (à ajuster selon la hauteur de la Navbar)
+                onClick={() => {
+                  setMenu(link.id);
+                  setMenuOpen(false);
+                }}
+              >
+                <p>{link.label}</p>
+              </AnchorLink>
+              {menu === link.id && <img src={underline} alt="Soulignement" />}
+            </li>
+          ))}
+        </ul>
+
+        {/* Bouton de contact */}
+        <div className="nav-connect">
+          <AnchorLink className="anchor-link" href="#contact" offset="80">
+            Me contacter
+          </AnchorLink>
+        </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
