@@ -1,7 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import mywork_data from '../../assets/mywork_data';
-import './projectDetail.css';  // Assurez-vous que ce fichier existe bien !
+import './ProjectDetail.css';  // Assurez-vous que ce fichier existe bien !
 
 const ProjectDetail = () => {
   const { id } = useParams();
