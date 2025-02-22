@@ -8,6 +8,7 @@ import MyWork from './components/MyWork/MyWork';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import ProjectDetail from './components/MyWork/ProjectDetail';
+import CVPage from "./components/CVPage/CVPage"; 
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         } />
         {/* Route dynamique pour afficher les détails des projets */}
         <Route path="/project/:id" element={<ProjectDetail />} />
+        <Route path="/cv" element={<CVPage />} />  {/* ✅ Ajouter la route du CV */}
       </Routes>
     </div>
   );

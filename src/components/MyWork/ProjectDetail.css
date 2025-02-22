@@ -1,0 +1,106 @@
+/* === Conteneur global === */
+.project-detail-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #1E1E1E;  /* Fond sombre */
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* === Titre du projet === */
+  .project-title {
+    text-align: center;
+    font-size: 28px;
+    color: #FF6B00;
+    margin-bottom: 20px;
+  }
+  
+  /* === Conteneur principal === */
+  .project-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* === Image du projet === */
+  .project-image {
+    width: 90%;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  
+  /* === Description du projet === */
+  .project-description {
+    text-align: center;
+    max-width: 800px;
+    line-height: 1.5;
+  }
+  
+  /* === Liste des outils === */
+  .tools-title {
+    font-size: 22px;
+    color: #FF6B00;
+    margin-bottom: 10px;
+  }
+  
+  .tools-list {
+    text-align: left;
+    padding: 0;
+    list-style-type: none;
+  }
+  
+  .tool-item {
+    margin: 5px 0;
+    font-size: 18px;
+  }
+  
+  /* === Boutons d'action === */
+  .project-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .github-button, .back-button {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+  }
+  
+  .github-button {
+    background-color: #FF6B00;
+    color: white;
+  }
+  
+  .back-button {
+    background-color: #444;
+    color: white;
+  }
+  
+  .github-button:hover, .back-button:hover {
+    opacity: 0.8;
+  }
+  
+  /* === Responsive pour mobile === */
+  @media (max-width: 768px) {
+    .project-content {
+      flex-direction: column;
+    }
+  
+    .project-image {
+      max-height: 250px;
+    }
+  
+    .project-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+  
+  

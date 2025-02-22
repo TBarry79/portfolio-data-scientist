@@ -2,6 +2,7 @@ import React from 'react';
 import './Hero.css';
 import photo from '../../assets/photo_Profil.jpg';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { Link } from "react-router-dom";// Importer Link pour la navigation
 
 const Hero = () => {
   return (
@@ -20,7 +21,7 @@ const Hero = () => {
               </AnchorLink>
             </div>
             <div className='hero-resume'>
-              Mon CV
+              <Link to="/cv">Mon CV</Link>  {/* 🔥 Lien vers la page CV */}
             </div>
         </div>
     </div>
