@@ -1,0 +1,48 @@
+.cv-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #1E1E1E;
+    color: white;
+    border-radius: 10px;
+    text-align: center;
+  }
+  
+  .cv-title {
+    font-size: 28px;
+    color: #FF6B00;
+    margin-bottom: 20px;
+  }
+  
+  .pdf-viewer canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+  
+  .cv-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+  }
+  
+  .download-button, .back-button {
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 18px;
+    color: white;
+  }
+  
+  .download-button {
+    background-color: #FF6B00;
+  }
+  
+  .back-button {
+    background-color: #444;
+  }
+  
+  .download-button:hover, .back-button:hover {
+    opacity: 0.8;
+  }
+  

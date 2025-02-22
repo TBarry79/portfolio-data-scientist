@@ -1,34 +1,46 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import mywork_data from '../../assets/mywork_data';
+import './projectDetail.css';  // Assurez-vous que ce fichier existe bien !
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const project = mywork_data.find((item) => item.w_no === id);
 
   if (!project) {
-    return <p>Projet non trouvé</p>;
+    return <p className="error-message">❌ Projet non trouvé</p>;
   }
 
   return (
-    <div className="project-detail">
-      <h1>{project.w_name}</h1>
-      <img src={project.w_img} alt={project.w_name} className="project-detail-img" />
-      <p>{project.w_desc}</p>
-      {project.w_tools && (
-        <>
-          <p><strong>Outils utilisés :</strong></p>
-          <ul>
-            {project.w_tools.map((tool, index) => (
-              <li key={index}>{tool}</li>
-            ))}
-          </ul>
-        </>
-      )}
-      <a href={project.w_link} className="button">Voir le projet sur GitHub</a>
+    <div className="project-detail-container">
+      <h1 className="project-title">{project.w_name}</h1>
       
-      {/* Ajout d'un bouton pour revenir à la liste des projets */}
-      <Link to="/" className="back-button">⬅ Retour aux projets</Link>
+      <div className="project-content">
+        <img src={project.w_img} alt={project.w_name} className="project-image" />
+        
+        <div className="project-description">
+          <p>{project.w_desc}</p>
+
+          {project.w_tools && (
+            <>
+              <h3 className="tools-title">🛠 Outils utilisés :</h3>
+              <ul className="tools-list">
+                {project.w_tools.map((tool, index) => (
+                  <li key={index} className="tool-item">✔ {tool}</li>
+                ))}
+              </ul>
+            </>
+          )}
+
+          <div className="project-buttons">
+            <a href={project.w_link} className="github-button" target="_blank" rel="noopener noreferrer">
+              🔗 Voir sur GitHub
+            </a>
+            
+            <Link to="/" className="back-button">⬅ Retour</Link>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
