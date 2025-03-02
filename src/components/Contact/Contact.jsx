@@ -4,6 +4,7 @@ import theme_pattern from '../../assets/right.svg'
 import mail_icon from '../../assets/mail_icon.svg'
 import location_icon from '../../assets/location_icon.svg'
 import call_icon from '../../assets/call_icon.svg'
+import { FaLinkedin, FaGithub } from 'react-icons/fa';
 
 const Contact = () => {
     const onSubmit = async (event) => {
@@ -60,6 +61,15 @@ const Contact = () => {
                             <img src={location_icon} alt='Icône de localisation' />
                             <p>Ile-de-France, France</p>
                         </div>
+                        <div className='contact-detail'>
+                            <a href='https://www.linkedin.com/in/barry-tidiane/' target='_blank' rel='noopener noreferrer'>
+                                <FaLinkedin className='social-icon linkedin' size={30} />
+                            </a>
+                            <a href='https://github.com/TBarry79' target='_blank' rel='noopener noreferrer'>
+                                <FaGithub className='social-icon github' size={30} />
+                            </a>
+                        </div>
+
                     </div>
                 </div>
                 <form onSubmit={onSubmit} className='contact-right'>

@@ -21,10 +21,10 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Vérifie si l'utilisateur est sur une page projet
-  const isProjectPage = location.pathname.startsWith('/project/');
+  // Vérifie si l'utilisateur est sur une page projet ou CV
+  const isHiddenPage = location.pathname.startsWith('/project/') || location.pathname.startsWith('/cv');
 
-  // Navigation Links
+  // Liens de navigation
   const navLinks = [
     { id: 'accueil', label: 'Accueil' },
     { id: 'a-propos', label: 'À propos de moi' },
@@ -33,13 +33,14 @@ const Navbar = () => {
     { id: 'contact', label: 'Contact' },
   ];
 
-  // Si on est sur une page projet, on masque la navbar
-  if (isProjectPage) return null;
+  // Si on est sur une page projet ou CV, masquer la navbar
+  if (isHiddenPage) return null;
 
   return (
     <nav className={`navbar ${scrolling ? 'navbar-scrolled' : ''}`}>
       <div className="navbar-container">
-        {/* Logo dynamique au scroll */}
+        
+        {/* Logo dynamique avec ancre */}
         <AnchorLink href="#accueil" className="logo-link">
           <img src={scrolling ? logo2 : logo1} alt="Logo" className="logo" />
         </AnchorLink>
@@ -56,7 +57,7 @@ const Navbar = () => {
               <AnchorLink
                 className="anchor-link"
                 href={`#${link.id}`}
-                offset="80"  // Décale la position d'ancrage de 80px (à ajuster selon la hauteur de la Navbar)
+                offset="90"  // Ajustement pour éviter que la navbar masque les titres
                 onClick={() => {
                   setMenu(link.id);
                   setMenuOpen(false);
@@ -69,12 +70,13 @@ const Navbar = () => {
           ))}
         </ul>
 
-        {/* Bouton de contact */}
+        {/* Bouton Me contacter */}
         <div className="nav-connect">
-          <AnchorLink className="anchor-link" href="#contact" offset="80">
+          <AnchorLink className="anchor-link contact-btn" href="#contact" offset="90">
             Me contacter
           </AnchorLink>
         </div>
+
       </div>
     </nav>
   );
