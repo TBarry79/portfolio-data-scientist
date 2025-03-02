@@ -153,3 +153,19 @@
         padding: 15px 40px;
     }
 }
+
+.social-icon {
+    margin-right: 10px;
+}
+
+.social-icon.linkedin {
+    color: #7dc7e9;
+}
+
+.social-icon.github {
+    color: #7dc7e9;
+}
+
+.social-icon:hover {
+    opacity: 0.8;
+}
