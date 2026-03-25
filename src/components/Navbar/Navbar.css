@@ -1,138 +1,165 @@
-/* Styles de base */
+/* NAVBAR MODERNE */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 100px;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  z-index: 1000;
-  background: transparent;
-  transition: background 0.3s ease;
-  padding: 10px 10px;
-}
-
-/* Navbar avec effet au scroll */
-.navbar-scrolled {
-  background: rgba(0, 0, 0, 0.85);
-  backdrop-filter: blur(10px);
-}
-
-/* Conteneur principal */
-.navbar-container {
+  z-index: 9999;
+  padding: 12px 20px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
 }
 
-/* Logo */
+/* effet glass Apple */
+.navbar-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 50px;
+  padding: 10px 20px;
+}
+
+/* logo */
 .logo {
-  height: 60px;
+  height: 45px;
+}
+
+/* bouton hamburger moderne */
+.menu-toggle {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
   cursor: pointer;
 }
 
-/* Menu */
+/* barres animées */
+.bar {
+  height: 2px;
+  width: 22px;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+/* animation croix */
+.bar.open:nth-child(1) {
+  transform: rotate(45deg) translateY(6px);
+}
+
+.bar.open:nth-child(2) {
+  transform: rotate(-45deg) translateY(-6px);
+}
+
+/* MENU MOBILE */
 .nav-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  height: 100vh;
+
+  background: rgba(15, 15, 15, 0.95);
+  backdrop-filter: blur(20px);
+
   display: flex;
-  gap: 40px;
+  flex-direction: column;
+  padding: 120px 30px;
+  gap: 30px;
+
+  transition: right 0.4s ease;
+}
+
+/* ouverture */
+.nav-menu.open {
+  right: 0;
+}
+
+/* liens */
+.nav-menu li {
   list-style: none;
 }
 
-/* Lien du menu */
-.nav-menu li {
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+.nav-menu a {
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+  font-weight: 500;
 }
 
-.nav-menu li:hover {
-  transform: translateY(-2px);
+/* effet hover moderne */
+.nav-menu a:hover {
+  opacity: 0.6;
 }
 
-/* Soulignement */
-.nav-menu li img {
-  position: absolute;
-  bottom: -18px;
-  left: 100%;
-  transform: translateX(-50%);
-}
+@media (min-width: 769px) {
 
-/* Bouton "Me contacter" */
-/* Ajuster la taille et l'affichage du bouton */
-.nav-connect {
-    padding: 12px 70px; /* Augmenter l'espace intérieur */
-    border-radius: 30px;
-    background: linear-gradient(135deg, #DA7C25, #B923E1);
-    transition: transform 0.3s, opacity 0.3s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 18px; /* Assure une bonne lisibilité */
-    color: white;
-    text-align: center;
-    white-space: nowrap; /* Empêche le texte de passer à la ligne */
-    width: fit-content; /* Ajuste la largeur au texte */
-    min-width: 200px; /* Augmente la largeur minimale */
-    max-width: 100%; /* Empêche le débordement */
-}
-
-.nav-connect:hover {
-  transform: scale(1.1);
-}
-
-.anchor-link {
-    text-decoration: none !important; /* Supprime le soulignement */
-    color: white !important; /* Texte en blanc */
-    font-weight: 500;
-    font-size: 18px;
+  /* container normal (plus de capsule flottante) */
+  .navbar-container {
+    background: transparent;
+    backdrop-filter: none;
+    border-radius: 0;
+    padding: 20px 60px;
   }
 
-/* Bouton Toggle pour le menu mobile */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-}
-
-/* Responsive : Menu Mobile */
-@media (max-width: 768px) {
-  .navbar {
-    padding: 20px 50px;
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-
+  /* menu horizontal */
   .nav-menu {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-    background: rgba(31, 0, 22, 0.95);
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 100px 30px;
-    transition: right 0.5s;
+    display: flex;
+    position: static;
+    flex-direction: row;
+    height: auto;
+    width: auto;
+    background: transparent;
+    gap: 40px;
+    padding: 0;
   }
 
-  .nav-menu.open {
-    right: 0;
+  /* liens */
+  .nav-menu a {
+    font-size: 18px;
+    color: white;
   }
 
-  .nav-menu li {
-    margin: 20px 0;
-  }
-
-  .nav-connect {
+  /* bouton hamburger caché */
+  .menu-toggle {
     display: none;
-    font-size: 16px;
-    padding: 10px 30px; /* Ajustement pour petits écrans */
-    min-width: 140px;
   }
+}
+
+@media (min-width: 769px) {
+  .navbar {
+    padding: 0;
+  }
+
+  .navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+/*Ajoute un effet hover*/
+.nav-menu a {
+  position: relative;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  background: #B923E1;
+  left: 0;
+  bottom: -5px;
+  transition: 0.3s;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
 }

@@ -38,47 +38,36 @@ const Navbar = () => {
 
   return (
     <nav className={`navbar ${scrolling ? 'navbar-scrolled' : ''}`}>
-      <div className="navbar-container">
-        
-        {/* Logo dynamique avec ancre */}
-        <AnchorLink href="#accueil" className="logo-link">
-          <img src={scrolling ? logo2 : logo1} alt="Logo" className="logo" />
-        </AnchorLink>
+  <div className="navbar-container">
 
-        {/* Menu Mobile Toggle */}
-        <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
-          <img src={menuOpen ? menu_close : menu_open} alt="Menu" />
-        </button>
+    {/* Logo */}
+    <AnchorLink href="#accueil" className="logo-link">
+      <img src={scrolling ? logo2 : logo1} alt="Logo" className="logo" />
+    </AnchorLink>
 
-        {/* Navigation principale */}
-        <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
-          {navLinks.map((link) => (
-            <li key={link.id}>
-              <AnchorLink
-                className="anchor-link"
-                href={`#${link.id}`}
-                offset="90"  // Ajustement pour éviter que la navbar masque les titres
-                onClick={() => {
-                  setMenu(link.id);
-                  setMenuOpen(false);
-                }}
-              >
-                <p>{link.label}</p>
-              </AnchorLink>
-              {menu === link.id && <img src={underline} alt="Soulignement" />}
-            </li>
-          ))}
-        </ul>
+    {/* Bouton menu */}
+    <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+      <span className={`bar ${menuOpen ? 'open' : ''}`}></span>
+      <span className={`bar ${menuOpen ? 'open' : ''}`}></span>
+    </button>
 
-        {/* Bouton Me contacter */}
-        <div className="nav-connect">
-          <AnchorLink className="anchor-link contact-btn" href="#contact" offset="90">
-            Me contacter
+    {/* Menu */}
+    <ul className={`nav-menu ${menuOpen ? 'open' : ''}`}>
+      {navLinks.map((link) => (
+        <li key={link.id}>
+          <AnchorLink
+            href={`#${link.id}`}
+            offset="80"
+            onClick={() => setMenuOpen(false)}
+          >
+            {link.label}
           </AnchorLink>
-        </div>
+        </li>
+      ))}
+    </ul>
 
-      </div>
-    </nav>
+  </div>
+</nav>
   );
 };
 
