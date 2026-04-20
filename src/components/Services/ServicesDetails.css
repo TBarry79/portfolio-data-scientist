@@ -1,0 +1,352 @@
+/* Reset et variables */
+:root {
+  --primary-gradient: linear-gradient(270deg, #DF8908, #B415FF);
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --hover-glow: rgba(185, 35, 225, 0.2);
+  --text-primary: #ffffff;
+  --text-secondary: #cccccc;
+  --text-tertiary: #bbbbbb;
+}
+
+/* Container principal */
+.service-detail {
+  min-height: 100vh;
+  padding: 5vh 20px 50px; /* Utilise une unité relative */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Centre verticalement si le contenu est petit */
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Effet de fond dynamique */
+.service-detail::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(185, 35, 225, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Bouton retour */
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+  padding: 12px 24px;
+  border-radius: 30px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-size: 16px;
+  font-weight: 500;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Effet de brillance au hover */
+.back-btn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: var(--hover-glow);
+  transition: width 0.6s, height 0.6s;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.back-btn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.back-btn:hover {
+  background: var(--hover-glow);
+  transform: translateX(-5px);
+  border-color: rgba(185, 35, 225, 0.5);
+  box-shadow: 0 0 20px rgba(185, 35, 225, 0.3);
+}
+
+/* Footer du service */
+.service-footer {
+  margin-top: 50px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Carte principale */
+.service-card {
+  max-width: 900px;
+  width: 100%;
+  padding: 50px;
+  border-radius: 24px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  animation: fadeUp 0.6s ease-out;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: rgba(185, 35, 225, 0.3);
+}
+
+/* Titre avec effet de brillance */
+.service-card h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  position: relative;
+  display: inline-block;
+}
+
+.service-card h1::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: var(--primary-gradient);
+  border-radius: 3px;
+}
+
+/* Description */
+.service-desc {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: 40px;
+  line-height: 1.6;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+/* Sections de contenu */
+.service-content {
+  margin-top: 30px;
+}
+
+.service-content h3 {
+  font-size: 24px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  color: var(--text-primary);
+  position: relative;
+  padding-left: 15px;
+}
+
+.service-content h3:first-of-type {
+  margin-top: 0;
+}
+
+.service-content h3::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 20px;
+  background: var(--primary-gradient);
+  border-radius: 2px;
+}
+
+.service-content p {
+  color: var(--text-tertiary);
+  line-height: 1.8;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+/* Liste stylisée */
+.service-content ul {
+  margin-top: 15px;
+  padding-left: 0;
+  list-style: none;
+}
+
+.service-content li {
+  margin-bottom: 12px;
+  padding-left: 25px;
+  position: relative;
+  color: var(--text-tertiary);
+  line-height: 1.6;
+}
+
+.service-content li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: #DF8908;
+  font-size: 14px;
+}
+
+/* Badges pour technologies */
+.tech-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  margin: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.tech-badge:hover {
+  background: var(--hover-glow);
+  transform: translateY(-2px);
+  border-color: rgba(185, 35, 225, 0.5);
+}
+
+/* Animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation de brillance pour le titre */
+@keyframes shine {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+/* Version responsive */
+@media (max-width: 768px) {
+  .service-detail {
+    padding: 80px 16px 40px;
+  }
+
+  .service-card {
+    padding: 30px 20px;
+  }
+
+  .service-card h1 {
+    font-size: 32px;
+  }
+
+  .service-card h1::after {
+    width: 40px;
+  }
+
+  .service-desc {
+    font-size: 15px;
+    margin-bottom: 30px;
+  }
+
+  .service-content h3 {
+    font-size: 20px;
+    margin-top: 25px;
+  }
+
+  .service-content p {
+    font-size: 14px;
+  }
+
+  .service-content li {
+    font-size: 14px;
+  }
+
+  .back-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .service-footer {
+    margin-top: 30px;
+  }
+}
+
+/* Pour les très petits écrans */
+@media (max-width: 480px) {
+  .service-card {
+    padding: 25px 16px;
+  }
+
+  .service-card h1 {
+    font-size: 28px;
+  }
+
+  .service-content h3 {
+    font-size: 18px;
+  }
+}
+
+/* Support pour le mode sombre (si nécessaire) */
+@media (prefers-color-scheme: light) {
+  .service-detail {
+    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+  }
+
+  .service-card {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .service-card h1,
+  .service-content h3,
+  .service-desc,
+  .service-content p,
+  .service-content li {
+    color: #333;
+  }
+
+  .back-btn {
+    color: #333;
+    background: rgba(0, 0, 0, 0.05);
+  }
+}
+
+/* Scrollbar personnalisée */
+.service-detail::-webkit-scrollbar {
+  width: 8px;
+}
+
+.service-detail::-webkit-scrollbar-track {
+  background: var(--glass-bg);
+}
+
+.service-detail::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #DF8908, #B415FF);
+  border-radius: 4px;
+}
+
+.service-detail::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #B415FF, #DF8908);
+}

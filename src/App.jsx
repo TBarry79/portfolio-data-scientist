@@ -9,11 +9,15 @@ import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import ProjectDetail from './components/MyWork/ProjectDetail';
 import CVPage from "./components/CVPage/CVPage"; 
+import ServicesDetails from './components/Services/ServicesDetails';
+import useHideNavbar from './useHideNavbar';
 
 const App = () => {
+  const hideNavbar = useHideNavbar();
+
   return (
     <div>
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={
           <>
@@ -28,6 +32,7 @@ const App = () => {
         {/* Route dynamique pour afficher les détails des projets */}
         <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path="/cv" element={<CVPage />} />  {/* ✅ Ajouter la route du CV */}
+        <Route path="/service/:id" element={<ServicesDetails />} />
       </Routes>
     </div>
   );
