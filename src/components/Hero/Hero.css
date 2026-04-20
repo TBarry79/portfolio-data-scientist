@@ -43,6 +43,7 @@
 }
 .anchor-link {
     text-decoration: none !important; /* Supprime le soulignement */
+    color: white !important; /* Texte en blanc */
   }
 .hero-resume{
     padding: 25px 45px;
